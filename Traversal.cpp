@@ -5,7 +5,7 @@ void Traverse::menu(Graph graph) {
 	bool flag = true;
 	while (flag) {
 		int choice;
-		cout << "( 1 )DFS\n ( 2 )BFS \n( 3 )ConnectedNess? \n ( 4 )DFS_SpanningTree? \n( 5 )BFS_SpanningTree \n ( 6 )Shortest PathLink Single Source \n( 7 )Bipartiteness \n ( 8 )Cycle Or Not?\n( 9 )Kruskal's MST  \n( 10 )Prim's MST\n( 10 )Djikstra's Shortest path \n \n( Anything Else )Exit: \n ";
+		cout << "( 1 )DFS\n( 2 )BFS \n( 3 )ConnectedNess?\n( 4 )DFS_SpanningTree?\n( 5 )BFS_SpanningTree \n( 6 )Shortest PathLink Single Source \n( 7 )Bipartiteness \n( 8 )Cycle Or Not?\n( 9 )Kruskal's MST  \n( 10 )Prim's MST\n( 11 )Djikstra's Shortest path \n \n( Anything Else )Exit: \n ";
 		cin >> choice;
 		cout << endl;
 		set<char> st;
@@ -694,6 +694,9 @@ ShortestPathpairs Traverse::dijkstras_Shortest_path_single_source(Graph graph) {
 		cin >> source;
 		if (graph.search_in_keys(source, key) != -1) {
 			flag = false;
+		}
+		else {
+			cout << "Source doesn't exist!. Reenter" << endl;
 		}
 	}
 	pq.push(pair<char,int>(source, 0));
