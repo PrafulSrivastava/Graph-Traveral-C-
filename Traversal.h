@@ -52,3 +52,23 @@ public:
 	static pair<int, Weighted_EdgeType> primsMST(Graph  graph);
 	static ShortestPathpairs dijkstras_Shortest_path_single_source(Graph graph);
 };
+
+/*
+1
+14
+0 1 4
+0 7 8
+1 2 8
+1 7 11
+2 3 7
+2 8 2
+2 5 4
+8 7 7
+8 6 6
+6 5 2
+6 7 1
+5 3 14
+5 4 10
+4 3 9
+
+*/

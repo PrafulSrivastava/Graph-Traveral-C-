@@ -26,8 +26,9 @@ void Traverse::menu(Graph graph) {
 			}
 			else
 				cout << "Graph is not Connected" << endl;
+			cout << endl;
 			break;
-			cout <<endl;
+			
 		case 4:
 			Traverse::DFS_SpanningTree(graph);
 			break;
