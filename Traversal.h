@@ -8,7 +8,7 @@
 #define BI_PARTITE_1 3
 #define BI_PARTITE_2 4
 #define NO_PARENT '#'
-#define INFINITE_WEIGHT -1
+#define INFINITE_WEIGHT INT_MIN
 
 typedef set<pair<char, pair<char, int>>> ShortestPathpairs;
 
@@ -22,6 +22,9 @@ typedef struct VerticeInfo {
 		this->parent = parent;
 		this->visited = visited;
 		this->cost = cost;
+	}
+	~VerticeInfo(){
+		cout << " Destroy\n";
 	}
 
 };
@@ -51,6 +54,7 @@ public:
 	static pair<int, set<pair<char, char>>> kruskalsMST(Graph  graph);
 	static pair<int, Weighted_EdgeType> primsMST(Graph  graph);
 	static ShortestPathpairs dijkstras_Shortest_path_single_source(Graph graph);
+	static ShortestPathpairs bellmonFord_Shortest_path_single_source(Graph graph);
 };
 
 /*
@@ -71,4 +75,16 @@ public:
 5 4 10
 4 3 9
 
+*/
+
+/*
+1
+7
+3 4 3
+2 4 3
+2 3 4
+2 1 -2
+1 3 -1
+0 2 5
+0 1 6
 */

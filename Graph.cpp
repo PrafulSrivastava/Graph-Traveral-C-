@@ -256,6 +256,17 @@ set<pair<char, char>> Graph::get_edges() {
 	}
 	return edges;
 }
+
+set<pair<char, pair<char, int>>> Graph::get_weighted_edges() {
+	set<pair<char, pair<char, int>>> edges;
+	for (auto x : graph) {
+		for (auto y : x.second) {
+			edges.insert(pair<char, pair<char, int>>(x.first, { y.first ,y.second}));
+		}
+	}
+	return edges;
+}
+
 set<pair<char, pair<char,int>>, compare> Graph::get_edges_with_wt() {
 	set<pair<char, pair<char, int>>,compare> edges;
 	for (auto x : graph) {
@@ -276,7 +287,7 @@ void Graph::display_graph() {
 			string arrow_temp = "";
 			if (weighted) {
 				size_t pos = temp.find('=');
-				arrow_temp = regex_replace(temp,regex("="), to_string(y.second));
+				arrow_temp = regex_replace(temp,regex("="), '(' + to_string(y.second) + ')');
 				
 			}
 			cout << arrow_temp << y.first <<endl;

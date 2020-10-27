@@ -38,6 +38,7 @@ public:
 	void display_map();
 	set<pair<char, bool>> get_keys();
 	set<pair<char, char>> get_edges();
+	set<pair<char, pair<char, int>>> get_weighted_edges();
 	set<pair<char, pair<char,int>>, compare> get_edges_with_wt();
 	int search_in_keys(char c,  set<pair<char, bool>> keys);
 	int** get_adj_matrix(int& key_count, int type);

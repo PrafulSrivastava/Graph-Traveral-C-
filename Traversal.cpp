@@ -152,6 +152,11 @@ int Traverse::dfs_traversal(Graph graph) {
 			keys.clear();
 		}
 	}
+	for (int i = 0; i < key_count; i++) {
+		delete adj[i];
+	}
+
+	delete[] adj;
 	return count;
 }
 
@@ -728,5 +733,59 @@ ShortestPathpairs Traverse::dijkstras_Shortest_path_single_source(Graph graph) {
 	for (auto x : shortest_path) {
 		cout << source << " --(" << x.second.second << ")--> " << x.second.first << endl;
 	}
+	for (auto x : v_info) {
+		delete x;
+	}
+	for (int i = 0; i < vertice_count; i++) {
+		delete adj_mat[i];
+	}
+
+	delete[] adj_mat;
 	return shortest_path;
+}
+ShortestPathpairs Traverse::bellmonFord_Shortest_path_single_source(Graph graph) {
+	ShortestPathpairs res, edges;
+	edges = graph.get_weighted_edges();
+	int vertices = graph.get_keys().size();
+	map<char, int> weight;
+	map<char, char> parent;
+	auto keys = graph.get_keys();
+	for(auto x  : keys){
+		weight[x.first] = INFINITE_WEIGHT;
+	}
+	bool flag = true;
+	char source;
+	while (flag) {
+		cout << "Enter Source : ";
+
+		cin >> source;
+		if (graph.search_in_keys(source, keys) != -1) {
+			flag = false;
+		}
+		else {
+			cout << "Source doesn't exist!. Reenter" << endl;
+		}
+	}
+	
+	weight[source] = 0;
+	while (vertices--) {
+		auto edge = edges.begin();
+		while (edge != edges.end()) {
+			if (weight[edge->first] != INFINITE_WEIGHT) {
+				if ((weight[edge->second.first] == INFINITE_WEIGHT) || (weight[edge->second.first] > edge->second.second + weight[edge->first])) {
+					weight[edge->second.first] = edge->second.second + weight[edge->first];
+					parent[edge->second.first] = edge->first;
+				}
+			}
+			edge++;
+		}		
+	}
+	for (auto x : keys) {
+		res.insert(pair<char, pair<char, int>>(source, { x.first,weight[x.first] }));
+	}
+
+	for (auto x : res) {
+		cout << source << " --(" << x.second.second << ")--> " << x.second.first << endl;
+	}
+	return res;
 }
